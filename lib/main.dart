@@ -5,10 +5,21 @@ void main() => runApp(MaterialApp(
   title: 'Flight Listings',
   debugShowCheckedModeBanner: false,
   home: HomeScreen(),
+  theme: appTheme,
 ));
 
 Color firstColor = Color(0xfff47d15);
 Color secondColor = Color(0xffef772c);
+
+ThemeData appTheme = ThemeData(
+  primaryColor: Color(0xfff3791a),
+  fontFamily: 'Oxygen',
+);
+
+List<String> locations = ['Dubai (DXB), New York City (NYK), Boston (BOS)'];
+
+const TextStyle dropDownLabelStyle = TextStyle(color: Colors.white, fontSize: 16);
+const TextStyle dropDownMenuItemStyle = TextStyle(color: Colors.black, fontSize: 16);
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -39,9 +50,42 @@ class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
             height: 400,
             // color: Colors.orange,
             decoration: BoxDecoration(gradient: LinearGradient(colors: [firstColor, secondColor])),
-          ),
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 50),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(Icons.location_on, color: Colors.white,),
+                      SizedBox(width: 16),
+                      PopupMenuButton(
+                        child: Row(
+                          children: <Widget>[
+                            Text(locations[0], style: dropDownLabelStyle,),
+                            Icon(Icons.keyboard_arrow_down, color: Colors.white,)
+                          ],
+                        ),
+                        itemBuilder: (BuildContext context) => <PopupMenuItem<int>>[
+                          PopupMenuItem(
+                            child: Text(locations[0], style: dropDownMenuItemStyle,),
+                            value: 0,
+                          ),
+                          PopupMenuItem(
+                            child: Text(locations[1], style: dropDownMenuItemStyle,),
+                            value: 1,
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ), 
         )
       ],
     );
   }
 }
+
