@@ -119,9 +119,24 @@ class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    ChoiceChip(Icons.flight_takeoff, "Flights", isFlightSelected),
+                    InkWell(
+                      child: ChoiceChip(
+                        Icons.flight_takeoff, "Flights", isFlightSelected),
+                        onTap: () {
+                          setState(() {
+                            isFlightSelected = true;
+                          });
+                        },
+                      ),
                     SizedBox(width: 20,),
-                    ChoiceChip(Icons.hotel, "Hotels", !isFlightSelected),
+                    InkWell(
+                      child: ChoiceChip(Icons.hotel, "Hotels", !isFlightSelected),
+                      onTap: () {
+                        setState(() {
+                          isFlightSelected = false;
+                        });
+                      },
+                    ),
                   ],
                 )
               ],
