@@ -16,7 +16,7 @@ ThemeData appTheme = ThemeData(
   fontFamily: 'Oxygen',
 );
 
-List<String> locations = ['Dubai (DXB), New York City (NYK), Boston (BOS)'];
+List<String> locations = ['Dubai (DXB)', 'New York City (NYK)'];
 
 const TextStyle dropDownLabelStyle = TextStyle(color: Colors.white, fontSize: 16);
 const TextStyle dropDownMenuItemStyle = TextStyle(color: Colors.black, fontSize: 16);
@@ -40,6 +40,9 @@ class HomeScreenTopPart extends StatefulWidget {
 }
 
 class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
+
+  var selectedLocationIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -60,9 +63,14 @@ class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
                       Icon(Icons.location_on, color: Colors.white,),
                       SizedBox(width: 16),
                       PopupMenuButton(
+                        onSelected: (index) {
+                          setState(() {
+                            selectedLocationIndex = index;
+                          });
+                        },
                         child: Row(
                           children: <Widget>[
-                            Text(locations[0], style: dropDownLabelStyle,),
+                            Text(locations[selectedLocationIndex], style: dropDownLabelStyle,),
                             Icon(Icons.keyboard_arrow_down, color: Colors.white,)
                           ],
                         ),
@@ -76,7 +84,9 @@ class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
                             value: 1,
                           )
                         ],
-                      )
+                      ),
+                      Spacer(),
+                      Icon(Icons.settings, color: Colors.white),
                     ],
                   ),
                 )
