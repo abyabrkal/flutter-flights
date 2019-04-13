@@ -89,6 +89,30 @@ class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
                       Icon(Icons.settings, color: Colors.white),
                     ],
                   ),
+                ),
+                SizedBox(height: 50,),
+                Text('Where would\n you want to go?', style: TextStyle(fontSize: 24, color: Colors.white), textAlign: TextAlign.center,),
+                SizedBox(height: 20,),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 32),
+                  child: Material(
+                    elevation: 5,
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                    child: TextField(
+                      controller: TextEditingController(text: locations[1]),
+                      style: dropDownMenuItemStyle,
+                      cursorColor: appTheme.primaryColor,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 32, vertical: 14),
+                        suffixIcon: Material(
+                          elevation: 2,
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                          child: Icon(Icons.search, color: Colors.black,),
+                        ),
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
                 )
               ],
             ),
