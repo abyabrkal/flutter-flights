@@ -7,6 +7,9 @@ void main() => runApp(MaterialApp(
   home: HomeScreen(),
 ));
 
+Color firstColor = Color(0xfff47d15);
+Color secondColor = Color(0xffef772c);
+
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,8 @@ class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
           clipper: CustomShapeClipper(),
           child: Container(
             height: 400,
-            color: Colors.orange,
+            // color: Colors.orange,
+            decoration: BoxDecoration(gradient: LinearGradient(colors: [firstColor, secondColor])),
           ),
         )
       ],
