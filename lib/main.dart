@@ -40,8 +40,8 @@ class HomeScreenTopPart extends StatefulWidget {
 }
 
 class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
-
   var selectedLocationIndex = 0;
+  var isFlightSelected = true;
 
   @override
   Widget build(BuildContext context) {
@@ -113,6 +113,16 @@ class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
                       ),
                     ),
                   ),
+                ),
+                SizedBox(height: 20,),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    ChoiceChip(Icons.flight_takeoff, "Flights", isFlightSelected),
+                    SizedBox(width: 20,),
+                    ChoiceChip(Icons.hotel, "Hotels", !isFlightSelected),
+                  ],
                 )
               ],
             ),
@@ -123,3 +133,36 @@ class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
   }
 }
 
+class ChoiceChip extends StatefulWidget {
+
+  final IconData icon;
+  final String text;
+  final bool isSelected;
+
+  ChoiceChip(this.icon, this.text, this.isSelected);
+
+  @override
+  _ChoiceChipState createState() => _ChoiceChipState();
+}
+
+class _ChoiceChipState extends State<ChoiceChip> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+      decoration: widget.isSelected ? BoxDecoration(
+        color: Colors.white.withOpacity(0.15), 
+        borderRadius: BorderRadius.all(Radius.circular(20))
+      ) : null,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Icon(widget.icon, size: 20, color: Colors.white,),
+          SizedBox(width: 8,),
+          Text(widget.text, style: TextStyle(color: Colors.white, fontSize: 16),),
+        ],
+      ),
+    );
+  }
+}
