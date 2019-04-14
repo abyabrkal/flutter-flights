@@ -1,5 +1,6 @@
 import 'package:flight_app/CustomShapeClipper.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(MaterialApp(
       title: 'Flight Listings',
@@ -282,6 +283,8 @@ List<CityCard> cityCards = [
       "assets/images/sydney.jpeg", "Sydney", "Mar 2019", "40", "5999", "2350"),
 ];
 
+final formatCurrency = NumberFormat.simpleCurrency();
+
 class CityCard extends StatelessWidget {
   final String imagePath, cityName, monthYear, discount, oldPrice, newPrice;
 
@@ -292,71 +295,85 @@ class CityCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
-        child: Stack(
-          children: <Widget>[
-            Container(
-              height: 210,
-              width: 160,
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Positioned(
-              left: 0,
-              bottom: 0,
-              width: 160,
-              height: 60,
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [
-                      Colors.black, Colors.black.withOpacity(0.1),
-                    ]
-                  )
+      child: Column(
+        children: <Widget>[
+          ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  height: 210,
+                  width: 160,
+                  child: Image.asset(
+                    imagePath,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-            ),
-            Positioned(
-              left: 10,
-              bottom: 10,
-              right: 10,
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                Positioned(
+                  left: 0,
+                  bottom: 0,
+                  width: 160,
+                  height: 60,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+                          Colors.black, Colors.black.withOpacity(0.1),
+                        ]
+                      )
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 10,
+                  bottom: 10,
+                  right: 10,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(
-                        cityName,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 18),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            cityName,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 18),
+                          ),
+                          Text(
+                            monthYear,
+                            style: TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white,
+                                fontSize: 14),
+                          ),
+                        ],
                       ),
-                      Text(
-                        monthYear,
-                        style: TextStyle(
-                            fontWeight: FontWeight.normal,
-                            color: Colors.white,
-                            fontSize: 14),
-                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(color: Colors.white, shape: BoxShape.rectangle, borderRadius: BorderRadius.all(Radius.circular(12))),
+                        child: Text("$discount%", style: TextStyle(fontSize: 14, color: Colors.black),))
                     ],
                   ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                    decoration: BoxDecoration(color: Colors.white, shape: BoxShape.rectangle, borderRadius: BorderRadius.all(Radius.circular(12))),
-                    child: Text("$discount%", style: TextStyle(fontSize: 14, color: Colors.black),))
-                ],
-              ),
-            )
-          ],
-        ),
+                )
+              ],
+            ),
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(width: 5,),
+              Text('${formatCurrency.format(newPrice)}', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 14,),),
+              SizedBox(width: 5,),
+              Text('${formatCurrency.format(oldPrice)}', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.normal, fontSize: 12,),),
+            ],
+          )
+        ],
       ),
     );
   }
