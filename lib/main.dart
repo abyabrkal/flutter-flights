@@ -2,11 +2,11 @@ import 'package:flight_app/CustomShapeClipper.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
-  title: 'Flight Listings',
-  debugShowCheckedModeBanner: false,
-  home: HomeScreen(),
-  theme: appTheme,
-));
+      title: 'Flight Listings',
+      debugShowCheckedModeBanner: false,
+      home: HomeScreen(),
+      theme: appTheme,
+    ));
 
 Color firstColor = Color(0xfff47d15);
 Color secondColor = Color(0xffef772c);
@@ -18,8 +18,10 @@ ThemeData appTheme = ThemeData(
 
 List<String> locations = ['Dubai (DXB)', 'New York City (NYK)'];
 
-const TextStyle dropDownLabelStyle = TextStyle(color: Colors.white, fontSize: 16);
-const TextStyle dropDownMenuItemStyle = TextStyle(color: Colors.black, fontSize: 16);
+const TextStyle dropDownLabelStyle =
+    TextStyle(color: Colors.white, fontSize: 16);
+const TextStyle dropDownMenuItemStyle =
+    TextStyle(color: Colors.black, fontSize: 16);
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -35,7 +37,6 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-
 /* ***************************************************************************
  *
  * HEADER TOP PART 
@@ -43,7 +44,6 @@ class HomeScreen extends StatelessWidget {
  * 
  * ***************************************************************************/
 
- 
 class HomeScreenTopPart extends StatefulWidget {
   @override
   _HomeScreenTopPartState createState() => _HomeScreenTopPartState();
@@ -62,7 +62,8 @@ class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
           child: Container(
             height: 400,
             // color: Colors.orange,
-            decoration: BoxDecoration(gradient: LinearGradient(colors: [firstColor, secondColor])),
+            decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [firstColor, secondColor])),
             child: Column(
               children: <Widget>[
                 SizedBox(height: 50),
@@ -70,7 +71,10 @@ class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
                   padding: const EdgeInsets.all(16.0),
                   child: Row(
                     children: <Widget>[
-                      Icon(Icons.location_on, color: Colors.white,),
+                      Icon(
+                        Icons.location_on,
+                        color: Colors.white,
+                      ),
                       SizedBox(width: 16),
                       PopupMenuButton(
                         onSelected: (index) {
@@ -80,29 +84,50 @@ class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
                         },
                         child: Row(
                           children: <Widget>[
-                            Text(locations[selectedLocationIndex], style: dropDownLabelStyle,),
-                            Icon(Icons.keyboard_arrow_down, color: Colors.white,)
+                            Text(
+                              locations[selectedLocationIndex],
+                              style: dropDownLabelStyle,
+                            ),
+                            Icon(
+                              Icons.keyboard_arrow_down,
+                              color: Colors.white,
+                            )
                           ],
                         ),
-                        itemBuilder: (BuildContext context) => <PopupMenuItem<int>>[
-                          PopupMenuItem(
-                            child: Text(locations[0], style: dropDownMenuItemStyle,),
-                            value: 0,
-                          ),
-                          PopupMenuItem(
-                            child: Text(locations[1], style: dropDownMenuItemStyle,),
-                            value: 1,
-                          )
-                        ],
+                        itemBuilder: (BuildContext context) =>
+                            <PopupMenuItem<int>>[
+                              PopupMenuItem(
+                                child: Text(
+                                  locations[0],
+                                  style: dropDownMenuItemStyle,
+                                ),
+                                value: 0,
+                              ),
+                              PopupMenuItem(
+                                child: Text(
+                                  locations[1],
+                                  style: dropDownMenuItemStyle,
+                                ),
+                                value: 1,
+                              )
+                            ],
                       ),
                       Spacer(),
                       Icon(Icons.settings, color: Colors.white),
                     ],
                   ),
                 ),
-                SizedBox(height: 50,),
-                Text('Where would\n you want to go?', style: TextStyle(fontSize: 24, color: Colors.white), textAlign: TextAlign.center,),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 50,
+                ),
+                Text(
+                  'Where would\n you want to go?',
+                  style: TextStyle(fontSize: 24, color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 32),
                   child: Material(
@@ -113,34 +138,43 @@ class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
                       style: dropDownMenuItemStyle,
                       cursorColor: appTheme.primaryColor,
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 32, vertical: 14),
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 32, vertical: 14),
                         suffixIcon: Material(
                           elevation: 2,
                           borderRadius: BorderRadius.all(Radius.circular(30)),
-                          child: Icon(Icons.search, color: Colors.black,),
+                          child: Icon(
+                            Icons.search,
+                            color: Colors.black,
+                          ),
                         ),
                         border: InputBorder.none,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     InkWell(
                       child: ChoiceChip(
-                        Icons.flight_takeoff, "Flights", isFlightSelected),
-                        onTap: () {
-                          setState(() {
-                            isFlightSelected = true;
-                          });
-                        },
-                      ),
-                    SizedBox(width: 20,),
+                          Icons.flight_takeoff, "Flights", isFlightSelected),
+                      onTap: () {
+                        setState(() {
+                          isFlightSelected = true;
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
                     InkWell(
-                      child: ChoiceChip(Icons.hotel, "Hotels", !isFlightSelected),
+                      child:
+                          ChoiceChip(Icons.hotel, "Hotels", !isFlightSelected),
                       onTap: () {
                         setState(() {
                           isFlightSelected = false;
@@ -151,7 +185,7 @@ class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
                 )
               ],
             ),
-          ), 
+          ),
         )
       ],
     );
@@ -159,7 +193,6 @@ class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
 }
 
 class ChoiceChip extends StatefulWidget {
-
   final IconData icon;
   final String text;
   final bool isSelected;
@@ -175,23 +208,32 @@ class _ChoiceChipState extends State<ChoiceChip> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-      decoration: widget.isSelected ? BoxDecoration(
-        color: Colors.white.withOpacity(0.15), 
-        borderRadius: BorderRadius.all(Radius.circular(20))
-      ) : null,
+      decoration: widget.isSelected
+          ? BoxDecoration(
+              color: Colors.white.withOpacity(0.15),
+              borderRadius: BorderRadius.all(Radius.circular(20)))
+          : null,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Icon(widget.icon, size: 20, color: Colors.white,),
-          SizedBox(width: 8,),
-          Text(widget.text, style: TextStyle(color: Colors.white, fontSize: 16),),
+          Icon(
+            widget.icon,
+            size: 20,
+            color: Colors.white,
+          ),
+          SizedBox(
+            width: 8,
+          ),
+          Text(
+            widget.text,
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
         ],
       ),
     );
   }
 } // END OF TOP PART
-
 
 /* ***************************************************************************
  *
@@ -209,10 +251,17 @@ var homeScreenBottomPart = Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text("Currently watched items", style: dropDownMenuItemStyle,),
+          Text(
+            "Currently watched items",
+            style: dropDownMenuItemStyle,
+          ),
           Spacer(),
-          Text("VIEW ALL(12)", style: viewAllStyle,),
-        ],),
+          Text(
+            "VIEW ALL(12)",
+            style: viewAllStyle,
+          ),
+        ],
+      ),
     ),
     Container(
       height: 210,
@@ -225,15 +274,19 @@ var homeScreenBottomPart = Column(
 );
 
 List<CityCard> cityCards = [
-  CityCard("assets/images/lasvegas.jpg", "Las Vegas", "Feb 2019", "45", "4299", "2250"),
-  CityCard("assets/images/athens.jpg", "Athens", "Apr 2019", "50", "9999", "4150"),
-  CityCard("assets/images/sydney.jpeg", "Sydney", "Mar 2019", "40", "5999", "2350"),
+  CityCard("assets/images/lasvegas.jpg", "Las Vegas", "Feb 2019", "45", "4299",
+      "2250"),
+  CityCard(
+      "assets/images/athens.jpg", "Athens", "Apr 2019", "50", "9999", "4150"),
+  CityCard(
+      "assets/images/sydney.jpeg", "Sydney", "Mar 2019", "40", "5999", "2350"),
 ];
 
 class CityCard extends StatelessWidget {
   final String imagePath, cityName, monthYear, discount, oldPrice, newPrice;
 
-  CityCard(this.imagePath, this.cityName, this.monthYear, this.discount, this.oldPrice, this.newPrice);
+  CityCard(this.imagePath, this.cityName, this.monthYear, this.discount,
+      this.oldPrice, this.newPrice);
 
   @override
   Widget build(BuildContext context) {
@@ -246,8 +299,62 @@ class CityCard extends StatelessWidget {
             Container(
               height: 210,
               width: 160,
-              child: Image.asset(imagePath, fit: BoxFit.cover,),
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.cover,
+              ),
             ),
+            Positioned(
+              left: 0,
+              bottom: 0,
+              width: 160,
+              height: 60,
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: [
+                      Colors.black, Colors.black.withOpacity(0.1),
+                    ]
+                  )
+                ),
+              ),
+            ),
+            Positioned(
+              left: 10,
+              bottom: 10,
+              right: 10,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        cityName,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 18),
+                      ),
+                      Text(
+                        monthYear,
+                        style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            color: Colors.white,
+                            fontSize: 14),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    decoration: BoxDecoration(color: Colors.white, shape: BoxShape.rectangle, borderRadius: BorderRadius.all(Radius.circular(12))),
+                    child: Text("$discount%", style: TextStyle(fontSize: 14, color: Colors.black),))
+                ],
+              ),
+            )
           ],
         ),
       ),
