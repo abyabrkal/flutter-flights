@@ -27,13 +27,23 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          HomeScreenTopPart()
+          HomeScreenTopPart(),
+          homeScreenBottomPart,
         ],
       ),
     );
   }
 }
 
+
+/* ***************************************************************************
+ *
+ * HEADER TOP PART 
+ * We use stateful widgets/classes here since we have states to manage in top part
+ * 
+ * ***************************************************************************/
+
+ 
 class HomeScreenTopPart extends StatefulWidget {
   @override
   _HomeScreenTopPartState createState() => _HomeScreenTopPartState();
@@ -180,4 +190,29 @@ class _ChoiceChipState extends State<ChoiceChip> {
       ),
     );
   }
-}
+} // END OF TOP PART
+
+
+/* ***************************************************************************
+ *
+ * HEADER BOTTOM PART BEGINS
+ * We wont use state/class widgets here as there are no state or data updation here. 
+ * 
+ * ***************************************************************************/
+var viewAllStyle = TextStyle(color: appTheme.primaryColor, fontSize: 14);
+
+var homeScreenBottomPart = Column(
+  children: <Widget>[
+    Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text("Currently watched items", style: dropDownMenuItemStyle,),
+          Spacer(),
+          Text("VIEW ALL(12)", style: viewAllStyle,),
+        ],),
+    ),
+  ],
+);
