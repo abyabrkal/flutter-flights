@@ -214,5 +214,37 @@ var homeScreenBottomPart = Column(
           Text("VIEW ALL(12)", style: viewAllStyle,),
         ],),
     ),
+    Container(
+      height: 210,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: cityCards,
+      ),
+    )
   ],
 );
+
+List<CityCard> cityCards = [
+  CityCard("assets/images/lasvegas.jpg", "Las Vegas", "Feb 2019", "45", "4299", "2250"),
+  CityCard("assets/images/athens.jpg", "Athens", "Apr 2019", "50", "9999", "4150"),
+  CityCard("assets/images/sydney.jpeg", "Sydney", "Mar 2019", "40", "5999", "2350"),
+];
+
+class CityCard extends StatelessWidget {
+  final String imagePath, cityName, monthYear, discount, oldPrice, newPrice;
+
+  CityCard(this.imagePath, this.cityName, this.monthYear, this.discount, this.oldPrice, this.newPrice);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        Container(
+          height: 210,
+          width: 160,
+          child: Image.asset(imagePath, fit: BoxFit.cover,),
+        ),
+      ],
+    );
+  }
+}
