@@ -1,6 +1,7 @@
 import 'package:flight_app/CustomShapeClipper.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flight_app/CustomAppBar.dart';
 
 void main() => runApp(MaterialApp(
       title: 'Flight Listings',
@@ -28,6 +29,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomAppBar(),
       body: Column(
         children: <Widget>[
           HomeScreenTopPart(),
