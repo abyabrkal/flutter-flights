@@ -20,8 +20,17 @@ class FlightListingScreen extends StatelessWidget {
               Navigator.pop(context);
             },
           )),
-      body: Column(
-        children: <Widget>[FlightListTopPart(), FlightListBottomPart()],
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: <Widget>[
+            FlightListTopPart(),
+            SizedBox(
+              height: 20,
+            ),
+            FlightListBottomPart(),
+          ],
+        ),
       ),
     );
   }
@@ -107,14 +116,28 @@ class FlightListBottomPart extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            "Best deals for next 6 months",
-            style: dropDownMenuItemStyle,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              "Best deals for next 6 months",
+              style: dropDownMenuItemStyle,
+            ),
           ),
           SizedBox(
             height: 8,
           ),
-          FlightCard(),
+          ListView(
+            shrinkWrap: true,
+            physics: ClampingScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            children: <Widget>[
+              FlightCard(),
+              FlightCard(),
+              FlightCard(),
+              FlightCard(),
+              FlightCard(),
+            ],
+          )
         ],
       ),
     );
@@ -124,44 +147,82 @@ class FlightListBottomPart extends StatelessWidget {
 class FlightCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Container(
-          margin: const EdgeInsets.only(right: 16),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-            border: Border.all(color: flightBorderColor,),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(children: <Widget>[
-                  Text('${formatCurrency.format(4159)}', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                  SizedBox(width: 4,),
-                  Text('${formatCurrency.format(9299)}', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, decoration: TextDecoration.lineThrough, color: Colors.grey),),
-                ],),
-                Wrap(
-                  spacing: 8,
-                  children: <Widget>[
-                    FlightDetailChip(Icons.calendar_today, "June 2019"),
-                    FlightDetailChip(Icons.flight_takeoff, "Emirates"),
-                    FlightDetailChip(Icons.star, "4.9"),
-                  ],
-                )
-              ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Stack(
+        children: <Widget>[
+          Container(
+            margin: const EdgeInsets.only(right: 16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              border: Border.all(
+                color: flightBorderColor,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        '${formatCurrency.format(4159)}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      SizedBox(
+                        width: 4,
+                      ),
+                      Text(
+                        '${formatCurrency.format(9299)}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            decoration: TextDecoration.lineThrough,
+                            color: Colors.grey),
+                      ),
+                    ],
+                  ),
+                  Wrap(
+                    spacing: 8,
+                    children: <Widget>[
+                      FlightDetailChip(Icons.calendar_today, "June 2019"),
+                      FlightDetailChip(Icons.flight_takeoff, "Emirates"),
+                      FlightDetailChip(Icons.star, "4.9"),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+          Positioned(
+            top: 10,
+            right: 0,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              child: Text(
+                '55%',
+                style: TextStyle(
+                    color: appTheme.primaryColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold),
+              ),
+              decoration: BoxDecoration(
+                color: discountBackgroundColor,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
 
-
 class FlightDetailChip extends StatelessWidget {
-
   final IconData iconData;
   final String label;
 
@@ -173,10 +234,12 @@ class FlightDetailChip extends StatelessWidget {
       label: Text(label),
       labelStyle: TextStyle(color: Colors.black, fontSize: 14),
       backgroundColor: chipBackgroundColor,
-      avatar: Icon(iconData, size: 14,),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10))
+      avatar: Icon(
+        iconData,
+        size: 14,
       ),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10))),
     );
   }
 }
