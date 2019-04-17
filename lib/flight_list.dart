@@ -23,6 +23,7 @@ class FlightListingScreen extends StatelessWidget {
       body: Column(
         children: <Widget>[
           FlightListTopPart(),
+          FlightListBottomPart()
         ],
       ),
     );
@@ -97,6 +98,16 @@ class FlightListTopPart extends StatelessWidget {
           ],
         )
       ],
+    );
+  }
+}
+
+
+class FlightListBottomPart extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      
     );
   }
 }
