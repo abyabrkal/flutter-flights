@@ -30,11 +30,15 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CustomAppBar(),
-      body: Column(
-        children: <Widget>[
-          HomeScreenTopPart(),
-          homeScreenBottomPart,
-        ],
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: <Widget>[
+            HomeScreenTopPart(),
+            homeScreenBottomPart,
+            homeScreenBottomPart,
+          ],
+        ),
       ),
     );
   }
