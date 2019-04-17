@@ -141,7 +141,11 @@ class FlightCard extends StatelessWidget {
                   Text('${formatCurrency.format(4159)}', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
                   Text('${formatCurrency.format(9299)}', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, decoration: TextDecoration.lineThrough, color: Colors.grey),),
                 ],),
-                Wrap()
+                Row(
+                  children: <Widget>[
+                    
+                  ],
+                )
               ],
             ),
           ),
