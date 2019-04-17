@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 final Color discountBackgroundColor = Color(0xFFFFE08D);
 final Color flightBorderColor = Color(0xFFE6E6E6);
-final Color chipBackgroundColor = Color(0xFFF6F6F6);
+final Color chipBackgroundColor = Color(0xFFF1F1F1);
 
 class FlightListingScreen extends StatelessWidget {
   @override
