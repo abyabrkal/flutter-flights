@@ -153,7 +153,8 @@ class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
                           borderRadius: BorderRadius.all(Radius.circular(30)),
                           child: InkWell(
                             onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => FlightListingScreen()))
+                              Navigator.push(context, 
+                                          MaterialPageRoute(builder: (context) => FlightListingScreen() ));
                             },
                             child: Icon(
                               Icons.search,
