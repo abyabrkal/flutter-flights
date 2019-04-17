@@ -21,10 +21,7 @@ class FlightListingScreen extends StatelessWidget {
             },
           )),
       body: Column(
-        children: <Widget>[
-          FlightListTopPart(),
-          FlightListBottomPart()
-        ],
+        children: <Widget>[FlightListTopPart(), FlightListBottomPart()],
       ),
     );
   }
@@ -102,12 +99,54 @@ class FlightListTopPart extends StatelessWidget {
   }
 }
 
-
 class FlightListBottomPart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Padding(
+      padding: EdgeInsets.only(left: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            "Best deals for next 6 months",
+            style: dropDownMenuItemStyle,
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          FlightCard(),
+        ],
+      ),
+    );
+  }
+}
+
+class FlightCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        Container(
+          margin: const EdgeInsets.only(right: 16),
+          height: 100,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            border: Border.all(color: flightBorderColor,),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: <Widget>[
+                Row(children: <Widget>[
+                  Text('${formatCurrency.format(4159)}', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                  Text('${formatCurrency.format(9299)}', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, decoration: TextDecoration.lineThrough, color: Colors.grey),),
+                ],),
+                Wrap()
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
